@@ -176,7 +176,9 @@ def bufferbloat():
     qmon = start_qmon(iface='s0-eth2', outfile='%s/q.txt' % (args.dir))
 
     # TODO: Start iperf, webservers, etc.
+    print('first')
     start_iperf(net)
+    print('second')
     start_webserver(net)
 
     # Hint: The command below invokes a CLI which you can use to
@@ -198,7 +200,6 @@ def bufferbloat():
         # do the measurement (say) 3 times.
         now = time()
         diff = now - start_time
-        print('here')
         if diff > args.time:
             break
         print("%.1fs left..." % (args.time - diff))
