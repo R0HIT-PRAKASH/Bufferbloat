@@ -82,7 +82,8 @@ class BBTopo(Topo):
         switch = self.addSwitch('s0')
 
         # TODO: Add links with appropriate characteristics
-        self.addLink(hosts[0], switch, bw=args.bw_host, delay='1ms', max_queue_size=args.maxq)
+        print(max_queue_size=args.maxq)
+        self.addLink(hosts[0], switch, bw=args.bw_host, delay='1ms', )
         self.addLink(hosts[1], switch, bw=args.bw_net, delay='1ms', max_queue_size=args.maxq)
 # Simple wrappers around monitoring utilities.  You are welcome to
 # contribute neatly written (using classes) monitoring scripts for
@@ -214,7 +215,7 @@ def bufferbloat():
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
     with open('%s/avgsd.txt'%(args.dir), 'w') as f:
-        f.write("Queue size is %s" %(args.maxq))
+        f.write("Queue size is %s \n" %(args.maxq))
         f.write("Average: %s \n" %(avg(times)))
         f.write("Standard Deviation: %s \n" %(stdev(times)))
     stop_tcpprobe()
