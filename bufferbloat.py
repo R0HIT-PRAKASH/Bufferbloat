@@ -113,7 +113,7 @@ def start_iperf(net):
     # TODO: Start the iperf client on h1.  Ensure that you create a
     # long lived TCP flow. You may need to redirect iperf's stdout to avoid blocking.
     h1 = net.get('h1')
-    h1.popen(f"iperf -c {h2.IP()} -t 15 > ./iperf.txt", shell=True)
+    h1.popen("iperf -c %s -t %s > ./iperf.txt" %(h2.IP(), args.time) ,shell=True)
 
 def start_webserver(net):
     h1 = net.get('h1')
