@@ -214,6 +214,7 @@ def bufferbloat():
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
     with open('%s/avgsd.txt'%(args.dir), 'w') as f:
+        f.write("Queue size is %s" %(args.maxq))
         f.write("Average: %s \n" %(avg(times)))
         f.write("Standard Deviation: %s \n" %(stdev(times)))
     stop_tcpprobe()
