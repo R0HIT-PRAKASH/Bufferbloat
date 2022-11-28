@@ -14,6 +14,7 @@ from subprocess import Popen, PIPE
 from time import sleep, time
 from multiprocessing import Process
 from argparse import ArgumentParser
+from helper import avg, stdev
 
 from monitor import monitor_qlen
 import termcolor as T
@@ -180,9 +181,7 @@ def bufferbloat():
     qmon = start_qmon(iface='s0-eth2', outfile='%s/q.txt' % (args.dir))
 
     # TODO: Start iperf, webservers, etc.
-    print('first')
     start_iperf(net)
-    print('second')
     start_webserver(net)
 
     # Hint: The command below invokes a CLI which you can use to
@@ -216,8 +215,8 @@ def bufferbloat():
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
     with open('./avgstd.txt', 'w') as f:
-        f.write("Average: %s \n" % math.avg(times))
-        f.write("Standard Deviation: %s \n" % math.stdev(times))
+        f.write("Average: %s \n" %(avg(times)))
+        f.write("Standard Deviation: %s \n" %(stdev(times)))
     stop_tcpprobe()
     if qmon is not None:
         qmon.terminate()
