@@ -198,6 +198,7 @@ def bufferbloat():
         # do the measurement (say) 3 times.
         now = time()
         diff = now - start_time
+        print('here')
         if diff > args.time:
             break
         print("%.1fs left..." % (args.time - diff))
