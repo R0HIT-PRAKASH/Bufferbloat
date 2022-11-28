@@ -215,7 +215,6 @@ def bufferbloat():
     # README and explain.
     with open('%s/avgsd.txt'%(args.dir), 'w') as f:
         f.write("Queue size is %s \n" %(args.maxq))
-        print(type(times[3]))
         f.write("Average: %s \n" %(avg(times)))
         f.write("Standard Deviation: %s \n" %(stdev(times)))
     stop_tcpprobe()
