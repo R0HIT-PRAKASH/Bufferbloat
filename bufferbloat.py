@@ -134,7 +134,7 @@ def start_ping(net):
     # redirecting stdout
     h1 = net.get('h1')
     h2 = net.get('h2')
-    result = h1.popen(f"ping -i 0.1 {h2.IP()} > ./ping.txt", shell=True)
+    result = h1.popen(f"ping -i 0.1 %s > ./ping.txt" %(h2.IP()), shell=True)
     result.communicate()
 
 def _measure_times(net, h1, h2):
