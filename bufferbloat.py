@@ -132,10 +132,10 @@ def start_ping(net):
     # Note that if the command prints out a lot of text to stdout, it will block
     # until stdout is read. You can avoid this by runnning popen.communicate() or
     # redirecting stdout
-    print('arrived')
     h1 = net.get('h1')
     h2 = net.get('h2')
     result = h1.popen("ping -i 0.1 %s > ./ping.txt" %(h2.IP()), shell=True)
+    print('arrived')
     result.communicate()
 
 def _measure_times(net, h1, h2):
