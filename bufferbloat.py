@@ -144,7 +144,7 @@ def _measure_times(net, h1, h2):
     timings = []
     for _ in range(3):
         start = time()
-        timings.append(h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html" %(h1.IP())).communicate()[0])
+        timings.append(float(h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html" %(h1.IP())).communicate()[0]))
         #timings.append(float(time()-start))
     return timings
 
@@ -215,7 +215,7 @@ def bufferbloat():
     # README and explain.
     with open('%s/avgsd.txt'%(args.dir), 'w') as f:
         f.write("Queue size is %s \n" %(args.maxq))
-        type(times[3])
+        print(type(times[3]))
         f.write("Average: %s \n" %(avg(times)))
         f.write("Standard Deviation: %s \n" %(stdev(times)))
     stop_tcpprobe()
