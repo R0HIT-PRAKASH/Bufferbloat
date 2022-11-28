@@ -141,9 +141,10 @@ def start_ping(net):
 
 def _measure_times(net, h1, h2):
     timings = []
-    for i in range(3):
-        time = h2.popen("curl -o /dev/null -s -w %{time_total} " + h1.IP() + "/http/index.html").communicate()[0]
-        timings.append(float(time))
+    for _ in range(3):
+        start = time()
+        h2.popen("curl -o /dev/null -s -w %{time_total} " + h1.IP() + "/http/index.html")
+        timings.append(start-time())
     return timings
 
 def bufferbloat():
