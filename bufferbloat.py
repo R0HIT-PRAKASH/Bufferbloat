@@ -136,7 +136,6 @@ def start_ping(net):
     h2 = net.get('h2')
     result = h1.popen("ping -i 0.1 %s > ./ping.txt" %(h2.IP()), shell=True)
     result.communicate()
-    print('stopped')
 
 def _measure_times(net, h1, h2):
     timings = []
@@ -164,6 +163,7 @@ def bufferbloat():
 
     # Start all the monitoring processes
     start_tcpprobe("cwnd.txt")
+    print('stopped')
     start_ping(net)
 
     # TODO: Start monitoring the queue sizes.  Since the switch I
