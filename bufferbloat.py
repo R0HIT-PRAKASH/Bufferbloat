@@ -74,7 +74,7 @@ class BBTopo(Topo):
         # Here are two hosts
         hosts = []
         for i in range(1,n+1):
-            hosts.append(self.addHost(f'h{i}'))
+            hosts.append(self.addHost('h%d' % i))
 
         # Here I have created a switch.  If you change its name, its
         # interface names will change from s0-eth1 to newname-eth1.
