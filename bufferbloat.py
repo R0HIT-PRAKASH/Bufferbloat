@@ -135,7 +135,7 @@ def start_ping(net):
     h1 = net.get('h1')
     h2 = net.get('h2')
     result = h1.popen("ping -i 0.1 %s > ./ping.txt" %(h2.IP()), shell=True)
-    print('arrived')
+    print(type(result))
     result.communicate()
     print('arrived')
 
