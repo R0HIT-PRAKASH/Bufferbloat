@@ -210,7 +210,8 @@ def bufferbloat():
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
     with open('./avgstd.txt', 'w') as f:
-        f.write(f"Average: {math.avg(times)} Standard Deviation: {math.stdev(times)}\n")
+        f.write("Average: %s \n" % math.avg(times))
+        f.write("Standard Deviation: %s \n" % math.stdev(times))
     stop_tcpprobe()
     if qmon is not None:
         qmon.terminate()
