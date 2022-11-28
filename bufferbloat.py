@@ -135,7 +135,7 @@ def start_ping(net):
     # redirecting stdout
     h1 = net.get('h1')
     h2 = net.get('h2')
-    result = h1.popen("ping -i 0.1 %s > ./ping.txt" %(h2.IP()), shell=True)
+    result = h1.popen("ping -i 0.1 %s > %s/ping.txt" %(h2.IP(), args.dir), shell=True)
     # print(type(result))
     # result.communicate()
     # print('arrived')
@@ -178,7 +178,7 @@ def bufferbloat():
     # qmon = start_qmon(iface='s0-eth2',
     #                  outfile='%s/q.txt' % (args.dir))
     print('zero')
-    qmon = start_qmon(iface='s0-eth2', outfile='%s/ping.txt' % (args.dir))
+    qmon = start_qmon(iface='s0-eth2', outfile='%s/q.txt' % (args.dir))
 
     # TODO: Start iperf, webservers, etc.
     start_iperf(net)
