@@ -83,7 +83,7 @@ class BBTopo(Topo):
 
         # TODO: Add links with appropriate characteristics
         print('queueueueue %s' %(args.maxq))
-        self.addLink(hosts[0], switch, bw=args.bw_host, delay='1ms', )
+        self.addLink(hosts[0], switch, bw=args.bw_host, delay='1ms', max_queue_size=args.maxq)
         self.addLink(hosts[1], switch, bw=args.bw_net, delay='1ms', max_queue_size=args.maxq)
 # Simple wrappers around monitoring utilities.  You are welcome to
 # contribute neatly written (using classes) monitoring scripts for
