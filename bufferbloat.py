@@ -144,7 +144,7 @@ def _measure_times(net, h1, h2):
     timings = []
     for _ in range(3):
         start = time()
-        h2.popen("curl -o /dev/null -s -w %{time_total} %s/http/index.html" %(h1.IP()))
+        h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html" %(h1.IP()))
         timings.append(float(start-time()))
     return timings
 
