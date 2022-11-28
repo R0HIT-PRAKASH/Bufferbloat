@@ -82,7 +82,6 @@ class BBTopo(Topo):
         switch = self.addSwitch('s0')
 
         # TODO: Add links with appropriate characteristics
-        print('queueueueue %s' %(args.maxq))
         self.addLink(hosts[0], switch, bw=args.bw_host, delay='1ms', max_queue_size=args.maxq)
         self.addLink(hosts[1], switch, bw=args.bw_net, delay='1ms', max_queue_size=args.maxq)
 # Simple wrappers around monitoring utilities.  You are welcome to
@@ -145,8 +144,8 @@ def _measure_times(net, h1, h2):
     timings = []
     for _ in range(3):
         start = time()
-        h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html" %(h1.IP()))
-        timings.append(float(time()-start))
+        timings.append(h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html" %(h1.IP())).communicate()[0])
+        #timings.append(float(time()-start))
     return timings
 
 def bufferbloat():
