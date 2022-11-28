@@ -137,6 +137,7 @@ def start_ping(net):
     result = h1.popen("ping -i 0.1 %s > ./ping.txt" %(h2.IP()), shell=True)
     print('arrived')
     result.communicate()
+    print('arrived')
 
 def _measure_times(net, h1, h2):
     timings = []
