@@ -82,8 +82,8 @@ class BBTopo(Topo):
         switch = self.addSwitch('s0')
 
         # TODO: Add links with appropriate characteristics
-        self.addLink(hosts[0], switch, bw=1000, delay='1s', max_queue_size=100)
-        self.addLink(hosts[1], switch, bw=10, delay='1s', max_queue_size=100)
+        self.addLink(hosts[0], switch, bw=args.bw_host, delay='1ms', max_queue_size=args.maxq)
+        self.addLink(hosts[1], switch, bw=args.bw_net, delay='1ms', max_queue_size=args.maxq)
 # Simple wrappers around monitoring utilities.  You are welcome to
 # contribute neatly written (using classes) monitoring scripts for
 # Mininet!
@@ -114,7 +114,7 @@ def start_iperf(net):
     # TODO: Start the iperf client on h1.  Ensure that you create a
     # long lived TCP flow. You may need to redirect iperf's stdout to avoid blocking.
     h1 = net.get('h1')
-    h1.popen("iperf -c %s -t %s > ./iperf.txt" %(h2.IP(), args.time) ,shell=True)
+    h1.popen("iperf -c %s -t %s > %s/iperf.txt" %(h2.IP(), args.time, args.dir) ,shell=True)
 
 def start_webserver(net):
     h1 = net.get('h1')
@@ -144,8 +144,8 @@ def _measure_times(net, h1, h2):
     timings = []
     for _ in range(3):
         start = time()
-        h2.popen("curl -o /dev/null -s -w %{time_total} " + h1.IP() + "/http/index.html")
-        timings.append(start-time())
+        h2.popen("curl -o /dev/null -s -w %{time_total} %s/http/index.html" %(h1.IP()))
+        timings.append(float(start-time()))
     return timings
 
 def bufferbloat():
@@ -177,7 +177,6 @@ def bufferbloat():
     #
     # qmon = start_qmon(iface='s0-eth2',
     #                  outfile='%s/q.txt' % (args.dir))
-    print('zero')
     qmon = start_qmon(iface='s0-eth2', outfile='%s/q.txt' % (args.dir))
 
     # TODO: Start iperf, webservers, etc.
@@ -214,7 +213,7 @@ def bufferbloat():
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
-    with open('./avgstd.txt', 'w') as f:
+    with open('%s/avgsd.txt'%(args.dir), 'w') as f:
         f.write("Average: %s \n" %(avg(times)))
         f.write("Standard Deviation: %s \n" %(stdev(times)))
     stop_tcpprobe()
