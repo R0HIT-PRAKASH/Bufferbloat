@@ -135,7 +135,7 @@ def start_ping(net):
     # redirecting stdout
     h1 = net.get('h1')
     h2 = net.get('h2')
-    result = h1.popen("ping -i 0.1 %s > %s/ping.txt" %(h2.IP(), args.dir), shell=True)
+    result = h1.popen("ping -i 0.1 %s > %s/ping.txt" %(h2.IP(), args.dir), shell=True).communicate()
     # print(type(result))
     # result.communicate()
     # print('arrived')
@@ -215,6 +215,7 @@ def bufferbloat():
     # README and explain.
     with open('%s/avgsd.txt'%(args.dir), 'w') as f:
         f.write("Queue size is %s \n" %(args.maxq))
+        type(times[3])
         f.write("Average: %s \n" %(avg(times)))
         f.write("Standard Deviation: %s \n" %(stdev(times)))
     stop_tcpprobe()
